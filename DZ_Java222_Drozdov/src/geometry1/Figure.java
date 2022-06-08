@@ -1,9 +1,10 @@
-package geometry;;
+package geometry1;;
 
-public class Figure {
+//Класс Figure-класс реализации интерфейса MovableAndScalable
+public class Figure implements MovableAndScalable {
 
     double x;
-     double y;
+    double y;
     final double PI = 3.14;
 
     public Figure(Figure figure) {
@@ -27,13 +28,18 @@ public class Figure {
 
 
     //Метод смещения центра фигуры
-    public static void Move(double x, double y) {
+    @Override
+   public void Move(double x, double y) {
         x = Math.random()*100;
         y = Math.random()*100;
         System.out.println("Coordinate center figure by X after offset =  " + x + " and Y after offset= " + y);
     }
 
-//   abstract public void perimeter();
+    //Увеличение размеров фигуры
+    @Override
+    public double Grow(double p){
+        return p+Math.random()*100;
+    }
 
 
 
@@ -43,10 +49,10 @@ public class Figure {
 
 class Ellipse extends Figure {
     //Добавляем переменные minRad и maxRad для дальнейшего подсчета периметра эллипса
-   double minRad;
-   double maxRad;
+    double minRad;
+    double maxRad;
 
-//   public Ellipse(Ellipse ellipse) {
+    //   public Ellipse(Ellipse ellipse) {
 //       super(ellipse);
 //       this.minRad=minRad;
 //       this.maxRad= maxRad;
@@ -108,6 +114,9 @@ class DemoFigure {
         double per1;
         per1 = firstEll.perimeter();
         System.out.println("Perimeter ellipse= " + per1);
+        double per1Grow;
+        per1Grow = firstEll.Grow(per1);
+        System.out.println("Perimeter ellipse after grow " + per1Grow);
         Figure figureEll = new Figure(5, 9);
         System.out.println("Coordinate center figure by x= " + figureEll.x + " Coordinate center figure by y= " + figureEll.y);
         figureEll.Move(figureEll.x, figureEll.y);
@@ -117,6 +126,9 @@ class DemoFigure {
         Rectangle firstRect = new Rectangle(15, 8);
         per2 = firstRect.perimeter();
         System.out.println("Perimeter rectangle= " + per2);
+        double per2Grow;
+        per2Grow = firstEll.Grow(per2);
+        System.out.println("Perimeter rectangle after grow " + per2Grow);
         Figure figureRect = new Figure(25, 300);
         System.out.println("Coordinate center figure by x= " + figureRect.x + " Coordinate center figure by y= " + figureRect.y);
         figureRect.Move(figureRect.x, figureRect.y);
@@ -126,6 +138,9 @@ class DemoFigure {
         Circle firstCircle = new Circle(3.1);
         per3 = firstCircle.perimeter();
         System.out.println("Perimeter Circle= " + per3);
+        double per3Grow;
+        per3Grow = firstEll.Grow(per3);
+        System.out.println("Perimeter Circle after grow " + per3Grow);
         Figure figureCircle = new Figure(294, 665);
         System.out.println("Coordinate center figure by x= " + figureCircle.x + " Coordinate center figure by y= " + figureCircle.y);
         figureCircle.Move(figureCircle.x, figureCircle.y);
